@@ -1,0 +1,2 @@
+#include <bits/stdc++.h>
+using namespace std; int main(){int food, w, len, in; cin >> food >> w >> len; set<int> s; while(food--){cin >> in; s.insert(in);} int next = 0, count = 0; for(int c : s){if(next < c){next = c+(2*w); count++;}} cout << count;}
