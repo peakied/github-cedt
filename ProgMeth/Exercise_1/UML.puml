@@ -1,0 +1,11 @@
+@startuml
+class StorageBox {
+~ ArrayList<Object> Box
+~ int fill
++ boolean isEmpty()
++ boolean isFull()
++ void push(Object)
++ void pop()
++ Object top()
+}
+@enduml
