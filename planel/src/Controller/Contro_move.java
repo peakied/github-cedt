@@ -10,17 +10,16 @@ public class Contro_move {
     }
     public void turnright() {
 
-        ////////////////Check can it walk////////////////
+        //////////////// Check can it walk ////////////////
         int position = map.getcurrentposition();
         if (map.getAllCells().get(position+map.getMapsize().getY()).isTransparent()) return;
 
-        ////////////////Check does it hit Map boarder////////////////
+        //////////////// Check does it hit Map boarder ////////////////
         if (map.getCurrentlyposition().getX()+11==map.getMapsize().getX()) map.mapextends(0);
 
-        ////////////////Reposition hero////////////////
+        //////////////// Reposition hero ////////////////
         map.getAllCells().get(position).clear();
-        map.setPlayerview(Playerview.RIGHT);
-        map.setCurrentlyface(Playerview.RIGHT);
+        map.setCurrentlyface(Playerview.Right);
         map.getAllCells().get(position+map.getMapsize().getY()).drawinside(map.getCurrentlyface());
         map.getChildren().clear();
         for(int i = 0;i<21;i++) {
@@ -32,7 +31,7 @@ public class Contro_move {
     }
     public void turnleft() {
 
-        ////////////////Check can it walk////////////////
+        //////////////// Check can it walk ////////////////
         if (map.getAllCells().get(map.getcurrentposition()-map.getMapsize().getY()).isTransparent()) return;
 
         ////////////////Check does it hit Map boarder////////////////
@@ -42,12 +41,11 @@ public class Contro_move {
             exten = false;
         }
 
-        ////////////////Reposition hero////////////////
+        //////////////// Reposition hero ////////////////
         if (exten) map.getCurrentlyposition().setX(map.getCurrentlyposition().getX()-1);
         int position = map.getcurrentposition();
         map.getAllCells().get(position+map.getMapsize().getY()).clear();
-        map.setCurrentlyface(Playerview.LEFT);
-        map.setPlayerview(Playerview.LEFT);
+        map.setCurrentlyface(Playerview.Left);
         map.getAllCells().get(position).drawinside(map.getCurrentlyface());
         map.getChildren().clear();
         for(int i = 0;i<21;i++) {
@@ -58,21 +56,21 @@ public class Contro_move {
     }
     public void turnup() {
 
-        ////////////////Check can it walk////////////////
+        //////////////// Check can it walk ////////////////
         if (map.getAllCells().get(map.getcurrentposition()-1).isTransparent()) return;
 
-        ////////////////Check does it hit Map boarder////////////////
+        //////////////// Check does it hit Map boarder ////////////////
         boolean exten = true;
         if (map.getCurrentlyposition().getY()-5==0) {
             map.mapextends(2);
             exten = false;
         }
 
-        ////////////////Reposition hero////////////////
+        //////////////// Reposition hero ////////////////
         if (exten) map.getCurrentlyposition().setY(map.getCurrentlyposition().getY()-1);
         int position = map.getcurrentposition();
         map.getAllCells().get(position+1).clear();
-        map.setPlayerview(Playerview.UP);
+        map.setCurrentlyface(Playerview.Up);
         map.getAllCells().get(position).drawinside(map.getCurrentlyface());
         map.getChildren().clear();
         for(int i = 0;i<21;i++) {
@@ -83,16 +81,16 @@ public class Contro_move {
     }
     public void turndown() {
 
-        ////////////////Check can it walk////////////////
+        //////////////// Check can it walk ////////////////
         if (map.getAllCells().get(map.getcurrentposition()+1).isTransparent()) return;
 
-        ////////////////Check does it hit Map boarder////////////////
+        //////////////// Check does it hit Map boarder ////////////////
         if (map.getCurrentlyposition().getY()+6==map.getMapsize().getY()) map.mapextends(3);
 
-        ////////////////Reposition hero////////////////
+        //////////////// Reposition hero ////////////////
         int position = map.getcurrentposition();
         map.getAllCells().get(position).clear();
-        map.setPlayerview(Playerview.DOWN);
+        map.setCurrentlyface(Playerview.Down);
         map.getAllCells().get(position+1).drawinside(map.getCurrentlyface());
 
         map.getChildren().clear();
@@ -104,8 +102,9 @@ public class Contro_move {
 
         map.getCurrentlyposition().setY(map.getCurrentlyposition().getY()+1);
     }
+
     public void call() {
-        ////////////////Debug position////////////////
+        //////////////// Debug position ////////////////
         System.out.println("X : "+map.getCurrentlyposition().getX()+" Y : "+map.getCurrentlyposition().getY());
     }
 }

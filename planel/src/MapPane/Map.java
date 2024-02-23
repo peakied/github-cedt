@@ -15,19 +15,17 @@ public class Map extends GridPane {
     private Position currentlyposition;
     private Position mapsize;
     private Playerview currentlyface;
-    private Playerview playerview;
     public Map() {
         super();
 
-        ////////////////set value////////////////
+        //////////////// set value ////////////////
         this.setAllCells(new ArrayList<Cell>());
-        this.setPlayerview(Playerview.RIGHT);
-        this.setCurrentlyface(Playerview.RIGHT);
+        this.setCurrentlyface(Playerview.Right);
 
         this.setCurrentlyposition(new Position(10,5));
         this.setMapsize(new Position(21,11));
 
-        ////////////////set alignment////////////////
+        //////////////// set alignment ////////////////
         this.setVgap(1);
         this.setPadding(new Insets(8));
         this.setAlignment(Pos.CENTER);
@@ -36,24 +34,20 @@ public class Map extends GridPane {
                 CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         this.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        ////////////////fill board////////////////
+        //////////////// fill board ////////////////
         Random random = new Random();
         for(int i = 0;i<21;i++) {
             for(int j =0;j<11;j++) {
                 if (i != 10|| j != 5){
                     this.allCells.add(new Cell(Block.randomBlock()));
                 } else {
-                    ////////////////draw base hero////////////////
+                    //////////////// draw base hero ////////////////
                     this.allCells.add(new Cell(Block.righthero));
-                    this.getAllCells().get((i*11)+j).drawinside(Playerview.RIGHT);
+                    this.getAllCells().get((i*11)+j).drawinside(Playerview.Right);
                 }
                 this.add(allCells.get((i*11)+j), i, j);
             }
         }
-    }
-
-    public Playerview getPlayerview() {
-        return playerview;
     }
 
     public Playerview getCurrentlyface() {
@@ -64,18 +58,15 @@ public class Map extends GridPane {
         this.currentlyface = currentlyface;
     }
 
-    public void setPlayerview(Playerview playerview) {
-        this.playerview = playerview;
-    }
-
     public int getcurrentposition() {
-//        System.out.println("Curr X:"+this.getCurrentlyposition().getX());
-//        System.out.println("Curr Y:"+this.getCurrentlyposition().getY());
-//        System.out.println("Map X:"+this.getMapsize().getX());
-//        System.out.println("Map Y:"+this.getMapsize().getY());
         return this.getCurrentlyposition().getX()*this.getMapsize().getY()+this.getCurrentlyposition().getY();
     }
     public void mapextends(int num) {
+        ////////////////       extend map      ////////////////
+        //////////////// case 0 = extend right ////////////////
+        //////////////// case 1 = extend left  ////////////////
+        //////////////// case 2 = extend up    ////////////////
+        //////////////// case 3 = extend down  ////////////////
         switch (num) {
             case 0:
 //                System.out.println(0);

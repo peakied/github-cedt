@@ -11,8 +11,11 @@ import java.util.ArrayList;
 public class SkillPane extends HBox {
     private ArrayList<SkillCell> skillCells;
     public SkillPane() {
+        //////////////// set value ////////////////
         super();
         this.setSkillCells(new ArrayList<SkillCell>());
+
+        //////////////// set alignment ////////////////
         this.setPadding(new Insets(5));
         this.setSpacing(10);
         this.setBorder(new Border(new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
@@ -31,9 +34,7 @@ public class SkillPane extends HBox {
         Thread thread = new Thread(()->{
             try {
                 this.getSkillCells().get(skill).timer();
-            } catch (Exception e) {
-                System.out.println(e);
-            }
+            } catch (Exception ignored) {}
         });
         thread.start();
     }

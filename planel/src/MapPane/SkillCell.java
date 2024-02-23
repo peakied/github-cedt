@@ -12,6 +12,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class SkillCell extends StackPane {
     private int delaskill;
@@ -34,11 +35,13 @@ public class SkillCell extends StackPane {
 
         Label label = new Label(String.valueOf(delaskill));
         label.setVisible(false);
+        label.setFont(Font.font(20));
         this.setCooldown(label);
         this.getChildren().add(label);
         StackPane.setAlignment(label,Pos.CENTER);
     }
     public void timer() throws InterruptedException {
+        //////////////// check can u use skill ////////////////
         if(this.isDelaying()) return;
 
         this.setDelaying(true);
@@ -78,12 +81,14 @@ public class SkillCell extends StackPane {
     public void setCooldown(Label cooldown) {
         this.cooldown = cooldown;
     }
+
     public void visible(boolean b) {
         if(b) this.getChildren().get(0).setEffect(new GaussianBlur(10));
         else this.getChildren().get(0).setEffect(null);
 
         this.getCooldown().setVisible(b);
     }
+
     public void setCooldownTime(int time) {
         this.getCooldown().setText(String.valueOf(time));
     }

@@ -3,6 +3,7 @@ package MapPane;
 import Util.Block;
 import Util.Playerview;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -15,7 +16,7 @@ public class Cell extends StackPane {
     public Cell(Block block) {
         super();
 
-        ////////////////set value////////////////
+        //////////////// set value ////////////////
         this.baseColor = Color.WHITE;
         this.setPrefWidth(50);
         this.setPrefHeight(50);
@@ -23,13 +24,14 @@ public class Cell extends StackPane {
         this.setMinWidth(50);
         this.setBlock(block);
         this.setTransparent(block.equals(Block.air));
+        this.setAlignment(Pos.CENTER);
 
-        ////////////////set background and player////////////////
+        //////////////// set background and player ////////////////
         initializeCellColor();
         initializeCell(block);
     }
     public void initializeCell(Block block) {
-        ////////////////set background////////////////
+        //////////////// set background ////////////////
         Image image = new Image(ClassLoader.getSystemResource(block.equals(Block.floor)?"dirt.jpg":block.equals(Block.grass)?"grass.jpg":block.equals(Block.air)?"water.jpg":block.equals(Block.righthero)?"Righthero.png":"Lefthero.png").toString());
         BackgroundFill bgFill = new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY);
         BackgroundFill[] bgFillA = {bgFill};
@@ -40,11 +42,12 @@ public class Cell extends StackPane {
         this.setBackground(new Background(bgFillA,bgImgA));
     }
     public void drawinside(Playerview playerview) {
-        ////////////////draw player////////////////
-        Image image = new Image(ClassLoader.getSystemResource(playerview.equals(Playerview.RIGHT)?"Righthero.png":"Lefthero.png").toString());
+        //////////////// draw player ////////////////
+        System.out.println(playerview.toString());
+        Image image = new Image(ClassLoader.getSystemResource(playerview.toString()+"Hero.png").toString());
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(50);
-        imageView.setFitWidth(50);
+        imageView.setFitHeight(90);
+        imageView.setFitWidth(90);
         this.getChildren().add(imageView);
     }
     public void clear() {

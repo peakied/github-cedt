@@ -1,8 +1,8 @@
 package Util;
 
 public enum Playerview {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
+    Right,
+    Left,
+    Up,
+    Down
 }
