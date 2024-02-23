@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,6 +16,7 @@ public class Map extends GridPane {
     private Position currentlyposition;
     private Position mapsize;
     private Playerview currentlyface;
+
     public Map() {
         super();
 
@@ -22,8 +24,8 @@ public class Map extends GridPane {
         this.setAllCells(new ArrayList<Cell>());
         this.setCurrentlyface(Playerview.Right);
 
-        this.setCurrentlyposition(new Position(10,5));
-        this.setMapsize(new Position(21,11));
+        this.setCurrentlyposition(new Position(10, 5));
+        this.setMapsize(new Position(21, 11));
 
         //////////////// set alignment ////////////////
         this.setVgap(1);
@@ -36,16 +38,16 @@ public class Map extends GridPane {
 
         //////////////// fill board ////////////////
         Random random = new Random();
-        for(int i = 0;i<21;i++) {
-            for(int j =0;j<11;j++) {
-                if (i != 10|| j != 5){
+        for (int i = 0; i < 21; i++) {
+            for (int j = 0; j < 11; j++) {
+                if (i != 10 || j != 5) {
                     this.allCells.add(new Cell(Block.randomBlock()));
                 } else {
                     //////////////// draw base hero ////////////////
-                    this.allCells.add(new Cell(Block.righthero));
-                    this.getAllCells().get((i*11)+j).drawinside(Playerview.Right);
+                    this.allCells.add(new Cell(Block.Grass));
+                    this.getAllCells().get((i * 11) + j).drawinside(Playerview.Right);
                 }
-                this.add(allCells.get((i*11)+j), i, j);
+                this.add(allCells.get((i * 11) + j), i, j);
             }
         }
     }
@@ -59,8 +61,9 @@ public class Map extends GridPane {
     }
 
     public int getcurrentposition() {
-        return this.getCurrentlyposition().getX()*this.getMapsize().getY()+this.getCurrentlyposition().getY();
+        return this.getCurrentlyposition().getX() * this.getMapsize().getY() + this.getCurrentlyposition().getY();
     }
+
     public void mapextends(int num) {
         ////////////////       extend map      ////////////////
         //////////////// case 0 = extend right ////////////////
@@ -73,31 +76,32 @@ public class Map extends GridPane {
                 for (int loop = 0; loop < this.getMapsize().getY(); loop++) {
                     this.getAllCells().add(new Cell(Block.randomBlock()));
                 }
-                this.getMapsize().setX(this.getMapsize().getX()+1);
+                this.getMapsize().setX(this.getMapsize().getX() + 1);
                 break;
             case 1:
 //                System.out.println(1);
                 for (int loop = 0; loop < this.getMapsize().getY(); loop++) {
-                    this.getAllCells().add(0,new Cell(Block.randomBlock()));
+                    this.getAllCells().add(0, new Cell(Block.randomBlock()));
                 }
-                this.getMapsize().setX(this.getMapsize().getX()+1);
+                this.getMapsize().setX(this.getMapsize().getX() + 1);
                 break;
             case 2:
 //                System.out.println(2);
                 for (int loop = 0; loop < this.getMapsize().getX(); loop++) {
-                    this.getAllCells().add(loop*this.getMapsize().getY()+loop,new Cell(Block.randomBlock()));
+                    this.getAllCells().add(loop * this.getMapsize().getY() + loop, new Cell(Block.randomBlock()));
                 }
-                this.getMapsize().setY(this.getMapsize().getY()+1);
+                this.getMapsize().setY(this.getMapsize().getY() + 1);
                 break;
             case 3:
 //                System.out.println("3");
                 for (int loop = 0; loop < this.getMapsize().getX(); loop++) {
-                    this.getAllCells().add((loop+1)*this.getMapsize().getY()+loop,new Cell(Block.randomBlock()));
+                    this.getAllCells().add((loop + 1) * this.getMapsize().getY() + loop, new Cell(Block.randomBlock()));
                 }
-                this.getMapsize().setY(this.getMapsize().getY()+1);
+                this.getMapsize().setY(this.getMapsize().getY() + 1);
                 break;
         }
     }
+
     public ArrayList<Cell> getAllCells() {
         return allCells;
     }

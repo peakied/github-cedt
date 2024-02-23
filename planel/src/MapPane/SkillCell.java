@@ -18,6 +18,7 @@ public class SkillCell extends StackPane {
     private int delaskill;
     private boolean delaying;
     private Label cooldown;
+
     public SkillCell(String name, int delaskill) {
         super();
         ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource(name).toString()));
@@ -38,11 +39,12 @@ public class SkillCell extends StackPane {
         label.setFont(Font.font(20));
         this.setCooldown(label);
         this.getChildren().add(label);
-        StackPane.setAlignment(label,Pos.CENTER);
+        StackPane.setAlignment(label, Pos.CENTER);
     }
+
     public void timer() throws InterruptedException {
         //////////////// check can u use skill ////////////////
-        if(this.isDelaying()) return;
+        if (this.isDelaying()) return;
 
         this.setDelaying(true);
         visible(true);
@@ -56,6 +58,17 @@ public class SkillCell extends StackPane {
         }
         visible(false);
         this.setDelaying(false);
+    }
+
+    public void visible(boolean b) {
+        if (b) this.getChildren().get(0).setEffect(new GaussianBlur(10));
+        else this.getChildren().get(0).setEffect(null);
+
+        this.getCooldown().setVisible(b);
+    }
+
+    public void setCooldownTime(int time) {
+        this.getCooldown().setText(String.valueOf(time));
     }
 
     public int getDelaskill() {
@@ -80,16 +93,5 @@ public class SkillCell extends StackPane {
 
     public void setCooldown(Label cooldown) {
         this.cooldown = cooldown;
-    }
-
-    public void visible(boolean b) {
-        if(b) this.getChildren().get(0).setEffect(new GaussianBlur(10));
-        else this.getChildren().get(0).setEffect(null);
-
-        this.getCooldown().setVisible(b);
-    }
-
-    public void setCooldownTime(int time) {
-        this.getCooldown().setText(String.valueOf(time));
     }
 }
