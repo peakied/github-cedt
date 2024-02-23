@@ -21,18 +21,23 @@ public class SkillCell extends StackPane {
 
     public SkillCell(String name, int delaskill) {
         super();
-        ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource(name).toString()));
-        imageView.setFitWidth(50);
-        imageView.setFitHeight(50);
+
+        //////////////// set value ////////////////
+        this.setDelaskill(delaskill);
+
+        //////////////// set alignment ////////////////
         this.setPrefHeight(50);
         this.setPrefWidth(50);
         this.setMaxHeight(50);
         this.setMaxWidth(50);
+
+        //////////////// set pane ////////////////
+        ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource(name).toString()));
+        imageView.setFitWidth(50);
+        imageView.setFitHeight(50);
         this.setAlignment(Pos.CENTER);
         this.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
         this.getChildren().add(imageView);
-
-        this.setDelaskill(delaskill);
 
         Label label = new Label(String.valueOf(delaskill));
         label.setVisible(false);

@@ -28,7 +28,6 @@ public class Map extends GridPane {
         this.setMapsize(new Position(21, 11));
 
         //////////////// set alignment ////////////////
-        this.setVgap(1);
         this.setPadding(new Insets(8));
         this.setAlignment(Pos.CENTER);
 //        this.setPrefWidth(500);
