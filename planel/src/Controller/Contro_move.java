@@ -108,5 +108,4 @@ public class Contro_move {
         ////////////////Debug position////////////////
         System.out.println("X : "+map.getCurrentlyposition().getX()+" Y : "+map.getCurrentlyposition().getY());
     }
-
 }
